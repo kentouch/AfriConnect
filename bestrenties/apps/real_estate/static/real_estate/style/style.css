@@ -1,0 +1,902 @@
+ 
+/* Real Estate Website Styles */
+
+/* General Styles */
+
+
+
+/************* Home page Styles *************/
+
+ :root {
+            --primary: #0e3a5e; /* Dark Blue/Green - for main headings, strong CTAs */
+            --secondary: #1e7e34; /* Dark Green - for section titles, service titles */
+            --accent: #f9a825; /* Orange/Yellow - for hover states, highlights */
+            --background: #f4f8fb; /* Light background */
+            --surface: #fff; /* Card/Form background */
+            --text: #1a2636; /* Dark text */
+            --muted: #6c7a89; /* Lighter text for descriptions */
+            --border: #dbeafe; /* Light border for cards/inputs */
+            --radius: 10px; /* Rounded corners */
+            --shadow: 0 2px 12px rgba(14,58,94,0.08); /* Subtle shadow */
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover { color: var(--accent);}
+        h1, h2, h3, h4 {
+            margin-top: 0;
+            font-family: inherit;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Header Styles */
+        .main-header {
+            background: var(--surface);
+            padding: 1rem 1.5rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            
+        }
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.2s, border-bottom 0.2s;
+            /* center the nav bar items vertically */
+            align-items: center;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+        /* Mobile Nav Toggle (Hidden by default) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        /* Mobile Nav Menu */
+        .mobile-nav {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            background: var(--surface);
+            position: absolute;
+            top: 60px; /* Adjust based on header height */
+            left: 0;
+            width: 100%;
+            box-shadow: var(--shadow);
+            border-top: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+        .mobile-nav.is-open {
+            display: flex;
+        }
+        .mobile-nav a {
+            padding: 0.8rem 1.5rem;
+            color: var(--text);
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .mobile-nav a:last-child {
+            border-bottom: none;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(14,58,94,0.3), rgba(30,126,52,0.4));
+            color: var(--surface);
+            text-align: center;
+            padding: 4rem 1rem 5rem 1rem;
+            border-bottom-left-radius: var(--radius);
+            border-bottom-right-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            color: var(--surface);
+            text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: #e0e7ef; 
+            text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+        }
+        .cta-btn {
+            background: var(--primary);
+            color: var(--surface);
+            border: none;
+            padding: 1rem 2.2rem;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(14,58,94,0.2);
+            transition: background 0.2s, color 0.2s, transform 0.1s;
+        }
+        .cta-btn:hover { 
+            background: var(--accent); 
+            color: var(--text);
+            transform: translateY(-2px);
+        }
+
+        /* Section General */
+        .section {
+            padding: 2.5rem 1rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-title {
+            color: var(--primary);
+            font-size: 1.9rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+        }
+        .intro-text {
+            font-size: 1.08rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--muted);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Service Cards Grid */
+        .service-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .service-summary-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.15s, box-shadow 0.15s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .service-summary-card:hover { 
+            transform: translateY(-3px) scale(1.005);
+            box-shadow: 0 6px 20px rgba(14,58,94,0.12);
+            border-color: var(--secondary);
+        }
+        .service-summary-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+        }
+        .service-summary-card h3 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-bottom: 0.6rem;
+        }
+        .service-summary-card p {
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+        .service-summary-card .cta-btn {
+            font-size: 0.9rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--accent);
+            color: var(--surface);
+        }
+        .service-summary-card .cta-btn:hover {
+            background: var(--primary);
+            color: var(--surface);
+        }
+
+        /* Featured Properties / Countries Grid */
+        .properties-grid, .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .property-card, .country-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.15s, box-shadow 0.15s;
+            border: 1px solid var(--border);
+        }
+        .property-card:hover, .country-card:hover { 
+            transform: translateY(-3px) scale(1.005);
+            box-shadow: 0 6px 20px rgba(14,58,94,0.12);
+            border-color: var(--primary);
+        }
+        .property-img, .country-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .property-content, .country-content {
+            padding: 1rem 1.2rem;
+        }
+        .property-content h3, .country-content h3 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
+        }
+        .property-content p, .country-content p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 0.8rem;
+        }
+        .property-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-top: 0.5rem;
+            display: block;
+        }
+        .property-tag {
+            background: var(--accent);
+            color: var(--surface);
+            padding: 0.3rem 0.7rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        /* Adjusted button style for property cards */
+        .property-content .cta-btn {
+            font-size: 0.98rem; /* Slightly larger than service/country cards */
+            padding: 0.7rem 1.4rem; /* Adjusted padding */
+            background: var(--primary); /* Primary color for property CTAs */
+            color: var(--surface);
+            margin-top: 1rem; /* Ensure spacing from price */
+        }
+        .property-content .cta-btn:hover {
+            background: var(--accent); /* Accent on hover */
+            color: var(--text);
+        }
+
+        .country-content ul {
+            list-style: disc;
+            margin: 0.6rem 0 1rem 1.1rem;
+            padding: 0;
+            font-size: 0.96rem;
+            color: var(--muted);
+        }
+        .country-content .cta-btn {
+            align-self: flex-start;
+            margin-top: auto;
+            font-size: 0.96rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--accent);
+            color: var(--surface);
+        }
+        .country-content .cta-btn:hover {
+            background: var(--primary);
+            color: var(--surface);
+        }
+
+        /* Call to Action Section */
+        .call-to-action {
+            background: var(--primary);
+            color: var(--surface);
+            text-align: center;
+            padding: 3rem 1rem;
+            border-radius: var(--radius);
+            margin: 3rem auto;
+            max-width: 900px;
+            box-shadow: var(--shadow);
+        }
+        .call-to-action h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--surface);
+        }
+        .call-to-action p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #e0e7ef;
+        }
+        .call-to-action .cta-btn {
+            background: var(--accent);
+            color: var(--text);
+        }
+        .call-to-action .cta-btn:hover {
+            background: var(--surface);
+            color: var(--primary);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: var(--surface);
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top-left-radius: var(--radius);
+            border-top-right-radius: var(--radius);
+            font-size: 0.95rem;
+        }
+        .footer a {
+            color: var(--accent);
+            margin: 0 0.6rem;
+            font-weight: 500;
+        }
+        .footer a:hover {
+            color: var(--surface);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .search-bar { flex-wrap: wrap; justify-content: center; }
+            .search-bar input, .search-bar select, .search-bar button { width: 100%; margin-bottom: 0.5rem; }
+            .service-summary-grid, .properties-grid, .countries-grid { gap: 1rem; }
+            .service-summary-card, .property-card, .country-card { padding: 1rem; }
+            .service-summary-icon { font-size: 2.5rem; }
+            .service-summary-card h3 { font-size: 1.1rem; }
+            .property-img, .country-img { height: 150px; }
+            .call-to-action h2 { font-size: 1.8rem; }
+            .call-to-action p { font-size: 1rem; }
+
+            .nav-links { display: none; } /* Hide desktop nav */
+            .menu-toggle { display: block; } /* Show hamburger */
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 2rem 0.8rem 2.5rem 0.8rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 0.95rem; }
+            .search-bar { margin-top: -2rem; }
+            .section { padding: 1.5rem 0.8rem; }
+            .section-title { font-size: 1.5rem; }
+            .intro-text { font-size: 0.95rem; }
+            .service-summary-grid, .properties-grid, .countries-grid { grid-template-columns: 1fr; }
+            .service-summary-card, .property-card, .country-card { max-width: 100%; }
+            .call-to-action { padding: 2rem 0.8rem; margin: 2rem auto; }
+            .call-to-action h2 { font-size: 1.5rem; }
+            .call-to-action p { font-size: 0.9rem; }
+            .footer { padding: 1.5rem 0.8rem; }
+        }
+
+
+
+
+
+        /********** Property Detail Page Styles **********/
+
+
+
+         /* It is recommended to move these styles to your main style.css file */
+    .property-detail-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 1rem;
+        font-family: var(--font-sans);
+    }
+    .property-detail-header {
+        margin-bottom: 2rem;
+    }
+    .property-detail-header h1 {
+        font-size: 2.5rem;
+        color: var(--headings);
+        margin-bottom: 0.5rem;
+    }
+    .property-detail-header .location {
+        font-size: 1.1rem;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .property-detail-layout {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2.5rem;
+        align-items: flex-start;
+    }
+    /* Gallery Styles */
+    .property-gallery .main-image img {
+        width: 100%;
+        height: 450px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        border: 1px solid #eee;
+    }
+    .thumbnail-images {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 0.75rem;
+    }
+    .thumbnail-images img {
+        width: 100%;
+        height: 75px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 4px;
+        opacity: 0.6;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        border: 2px solid transparent;
+    }
+    .thumbnail-images img:hover {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    .thumbnail-images img.active {
+        opacity: 1;
+        border-color: var(--primary);
+    }
+    /* Main Info Styles */
+    .property-main-info .price {
+        font-size: 2.2rem;
+        font-weight: bold;
+        color: var(--primary);
+        margin: 1.5rem 0;
+    }
+    .key-features {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+        padding: 1.5rem 0;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        flex-wrap: wrap;
+    }
+    .key-features .feature {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--text);
+    }
+    .key-features .feature i {
+        color: var(--primary);
+        font-size: 1.2rem;
+    }
+    .property-description {
+        line-height: 1.7;
+        color: var(--text);
+    }
+    /* Agent Contact Card Styles */
+    .agent-contact-card {
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        position: sticky;
+        top: 2rem;
+    }
+    .agent-contact-card h3 {
+        margin-top: 0;
+        border-bottom: 2px solid var(--primary);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    .agent-contact-form .form-group {
+        margin-bottom: 1rem;
+    }
+    .agent-contact-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+    .agent-contact-form input,
+    .agent-contact-form textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .message-box {
+        padding: 1rem;
+        border-radius: 4px;
+        margin-top: 1rem;
+        display: none;
+        text-align: center;
+    }
+    .message-box.success { background-color: #d4edda; color: #155724; }
+    .message-box.error { background-color: #f8d7da; color: #721c24; }
+
+    @media (max-width: 992px) {
+        .property-detail-layout {
+            grid-template-columns: 1fr;
+        }
+        .agent-contact-card {
+            position: static;
+            margin-top: 2rem;
+        }
+    }
+
+
+        
+    /********** Property list Page Styles **********/
+
+
+       /* Définition des variables CSS pour une gestion cohérente des couleurs et des dimensions à travers le site */
+        :root {
+            --primary: #0e3a5e; /* Bleu foncé/Vert - utilisé pour les titres principaux, les appels à l'action (CTA) forts */
+            --secondary: #1e7e34; /* Vert foncé - utilisé pour les titres de section, les titres de service */
+            --accent: #f9a825; /* Orange/Jaune - utilisé pour les états de survol, les éléments mis en évidence */
+            --background: #f4f8fb; /* Arrière-plan général clair */
+            --surface: #fff; /* Arrière-plan pour les cartes et les formulaires */
+            --text: #1a2636; /* Couleur principale pour le texte foncé */
+            --muted: #6c7a89; /* Texte plus clair pour les descriptions ou informations secondaires */
+            --border: #dbeafe; /* Couleur claire pour les bordures des cartes et des champs de saisie */
+            --radius: 10px; /* Rayon des coins arrondis pour les éléments */
+            --shadow: 0 2px 12px rgba(14,58,94,0.08); /* Ombre subtile pour donner de la profondeur aux éléments */
+        }
+        /* Styles de base pour l'HTML et le corps de la page */
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif; /* Police de caractères moderne et lisible */
+            background: var(--background); /* Utilise la couleur d'arrière-plan définie */
+            color: var(--text); /* Utilise la couleur de texte principale */
+            line-height: 1.6; /* Hauteur de ligne pour une meilleure lisibilité */
+        }
+        /* Styles pour les liens hypertexte */
+        a {
+            color: var(--primary); /* Couleur des liens */
+            text-decoration: none; /* Supprime le soulignement par défaut */
+            transition: color 0.2s; /* Transition douce sur le changement de couleur */
+        }
+        a:hover { color: var(--accent);} /* Couleur des liens au survol */
+        /* Styles pour les titres */
+        h1, h2, h3, h4 {
+            margin-top: 0;
+            font-family: inherit;
+            font-weight: 700; /* Gras */
+            line-height: 1.2;
+        }
+
+        /* Styles de l'en-tête principal de la page */
+        .main-header {
+            background: var(--surface); /* Arrière-plan de l'en-tête */
+            padding: 1rem 1.5rem;
+            box-shadow: var(--shadow); /* Ombre sous l'en-tête */
+            display: flex; /* Utilise Flexbox pour l'alignement des éléments */
+            justify-content: space-between; /* Espace les éléments aux extrémités */
+            align-items: center; /* Centre les éléments verticalement */
+            border-bottom: 1px solid var(--border); /* Bordure inférieure */
+            position: sticky; /* L'en-tête reste en haut lors du défilement */
+            top: 0;
+            z-index: 1000; /* Assure que l'en-tête est au-dessus des autres contenus */
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex; /* Flexbox pour les liens de navigation */
+            gap: 1.2rem; /* Espacement entre les liens */
+            list-style: none; /* Supprime les puces de liste */
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.2s, border-bottom 0.2s; /* Transitions pour les effets de survol */
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary); /* Soulignement au survol */
+        }
+        /* Bascule du menu mobile (initialement cachée sur les grands écrans) */
+        .menu-toggle {
+            display: none; /* Caché par défaut */
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        /* Menu de navigation mobile (initialement caché) */
+        .mobile-nav {
+            display: none; /* Caché par défaut */
+            flex-direction: column; /* Les éléments s'empilent verticalement */
+            background: var(--surface);
+            position: absolute; /* Positionnement absolu pour s'afficher par-dessus le contenu */
+            top: 60px; /* Ajuster en fonction de la hauteur de l'en-tête */
+            left: 0;
+            width: 100%;
+            box-shadow: var(--shadow);
+            border-top: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+        .mobile-nav.is-open {
+            display: flex; /* Affiche le menu lorsque la classe 'is-open' est ajoutée par JS */
+        }
+        .mobile-nav a {
+            padding: 0.8rem 1.5rem;
+            color: var(--text);
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .mobile-nav a:last-child {
+            border-bottom: none; /* Pas de bordure pour le dernier élément */
+        }
+
+        /* Section Héro (bannière principale) */
+        .hero {
+            /* Arrière-plan avec un dégradé et une image, centré et couvrant l'espace */
+            background: linear-gradient(rgba(14,58,94,0.3), rgba(30,126,52,0.4));
+            color: var(--surface); /* Texte blanc */
+            text-align: center;
+            padding: 4rem 1rem 5rem 1rem;
+            border-bottom-left-radius: var(--radius); /* Coins arrondis en bas */
+            border-bottom-right-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            color: var(--surface);
+            text-shadow: 0 3px 10px rgba(0,0,0,0.3); /* Ombre sur le texte pour la lisibilité */
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: #e0e7ef; 
+            text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+        }
+        .cta-btn {
+            background: var(--primary); /* Couleur du bouton d'appel à l'action */
+            color: var(--surface);
+            border: none;
+            padding: 1rem 2.2rem;
+            font-size: 1.1rem;
+            border-radius: 30px; /* Bouton très arrondi */
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(14,58,94,0.2);
+            transition: background 0.2s, color 0.2s, transform 0.1s; /* Transitions pour les effets de survol */
+        }
+        .cta-btn:hover { 
+            background: var(--accent); /* Couleur au survol */
+            color: var(--text);
+            transform: translateY(-2px); /* Léger déplacement vers le haut au survol */
+        }
+
+        
+        /* Styles pour les messages d'erreur de formulaire (affichés par Django) */
+        .errorlist {
+            color: #e74c3c; /* Rouge pour les erreurs */
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            list-style-type: none; /* Supprime les puces */
+            padding-left: 0;
+        }
+
+        /* Styles généraux pour les sections de contenu */
+        .section {
+            padding: 2.5rem 1rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-title {
+            color: var(--primary);
+            font-size: 1.9rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+        }
+        .intro-text {
+            font-size: 1.08rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--muted);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Grille des propriétés (optimisée pour la flexibilité) */
+        .properties-grid {
+            display: grid; /* Utilise CSS Grid pour organiser les cartes de propriété */
+            /* Crée des colonnes qui s'ajustent automatiquement :
+               - auto-fit: crée autant de colonnes que possible
+               - minmax(280px, 1fr): chaque colonne a une largeur minimale de 280px et prend le reste de l'espace disponible */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem; /* Espacement entre les cartes de propriété */
+            margin-top: 2rem;
+            /* Cette configuration de grille est intrinsèquement flexible et s'adapte automatiquement à la largeur de l'écran */
+        }
+        .property-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden; /* Assure que les coins arrondis sont respectés pour l'image */
+            border: 1px solid var(--border);
+            transition: transform 0.2s ease-in-out; /* Effet de survol doux */
+        }
+        .property-card:hover {
+            transform: translateY(-5px); /* Léger déplacement vers le haut au survol */
+        }
+        .property-img {
+            width: 100%; /* Image prend toute la largeur de la carte */
+            height: 200px; /* Hauteur fixe pour la cohérence visuelle des images */
+            object-fit: cover; /* Recadre l'image pour couvrir l'espace sans déformer */
+            display: block;
+        }
+        .property-content {
+            padding: 1.2rem;
+        }
+        .property-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
+        }
+        .property-content h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+        }
+        .property-content p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            min-height: 45px; /* Assure une hauteur minimale pour la description, évitant les décalages de mise en page */
+        }
+        .property-price {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1.2rem;
+        }
+        .property-card .cta-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 0.8rem 1rem;
+            border-radius: 8px; /* Rayon légèrement moins prononcé que le bouton héro */
+            font-size: 0.95rem;
+            background: var(--primary);
+            color: var(--surface);
+            box-shadow: none; /* Supprime l'ombre supplémentaire pour les boutons des cartes */
+        }
+        .property-card .cta-btn:hover {
+            background: var(--accent);
+            color: var(--text);
+            transform: none; /* Pas de déplacement vertical au survol pour les boutons des cartes */
+        }
+
+        /* Appel à l'action principal (en bas de page) */
+        .call-to-action {
+            background: linear-gradient(to right, var(--primary), var(--secondary)); /* Dégradé de couleurs */
+            color: var(--surface);
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 3rem;
+            border-top-left-radius: var(--radius);
+            border-top-right-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .call-to-action h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        .call-to-action p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #e0e7ef;
+        }
+        .call-to-action .cta-btn {
+            background: var(--accent);
+            color: var(--text);
+            box-shadow: 0 3px 10px rgba(249,168,37,0.3);
+        }
+        .call-to-action .cta-btn:hover {
+            background: var(--surface);
+            color: var(--primary);
+        }
+
+        /* Pied de page */
+        .footer {
+            background: var(--primary);
+            color: var(--surface);
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 0; /* Pas de marge supérieure car la section CTA en a déjà une */
+            border-top-left-radius: var(--radius);
+            border-top-right-radius: var(--radius);
+            font-size: 0.95rem;
+        }
+        .footer a {
+            color: var(--accent);
+            margin: 0 0.6rem;
+            font-weight: 500;
+        }
+        .footer a:hover {
+            color: var(--surface);
+        }
+
+        /* Ajustements responsifs pour différentes tailles d'écran */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .search-bar { padding: 1.8rem 1rem; gap: 0.8rem; }
+            .search-bar .input-group { min-width: 160px; } /* Ajustement de la largeur minimale */
+            .section-title { font-size: 1.6rem; }
+            .intro-text { font-size: 1.0rem; }
+            .properties-grid { gap: 1.2rem; } /* Réduction de l'espacement */
+            .property-content h3 { font-size: 1.2rem; }
+            .property-price { font-size: 1.1rem; }
+            .call-to-action h2 { font-size: 1.8rem; }
+            .call-to-action p { font-size: 1.0rem; }
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 2rem 0.8rem 2.5rem 0.8rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 0.95rem; }
+            /* La barre de recherche passe en colonne sur les petits écrans */
+            .search-bar { flex-direction: column; align-items: stretch; margin: -3rem auto 2rem auto; }
+            .search-bar .input-group { min-width: unset; width: 100%; } /* Les champs prennent toute la largeur */
+            .search-bar button { width: 100%; margin-top: 1rem; }
+            .section { padding: 1.5rem 0.8rem; }
+            .section-title { font-size: 1.5rem; }
+            .intro-text { font-size: 0.95rem; }
+            .properties-grid { grid-template-columns: 1fr; } /* Une seule colonne pour les propriétés */
+            .call-to-action h2 { font-size: 1.5rem; }
+            .call-to-action p { font-size: 0.95rem; }
+            .footer { padding: 1.5rem 0.8rem; }
+        }

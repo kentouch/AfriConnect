@@ -1,0 +1,463 @@
+/******* GENERAL STYLES *********/
+
+
+/******* Land services styles ********/
+
+ :root {
+            --primary: #0e3a5e; /* Dark Blue/Green - for main headings, strong CTAs */
+            --secondary: #1e7e34; /* Dark Green - for section titles, service titles */
+            --accent: #f9a825; /* Orange/Yellow - for hover states, highlights */
+            --background: #f4f8fb; /* Light background */
+            --surface: #fff; /* Card/Form background */
+            --text: #1a2636; /* Dark text */
+            --muted: #6c7a89; /* Lighter text for descriptions */
+            --border: #dbeafe; /* Light border for cards/inputs */
+            --radius: 10px; /* Rounded corners */
+            --shadow: 0 2px 12px rgba(14,58,94,0.08); /* Subtle shadow */
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover { color: var(--accent);}
+        h1, h2, h3, h4 {
+            margin-top: 0;
+            font-family: inherit;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Header Styles */
+        .main-header {
+            background: var(--surface);
+            padding: 1rem 1.5rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.2s, border-bottom 0.2s;
+             /* center the nav bar items vertically */
+            align-items: center;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+        /* Mobile Nav Toggle (Hidden by default) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        /* Mobile Nav Menu */
+        .mobile-nav {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            background: var(--surface);
+            position: absolute;
+            top: 60px; /* Adjust based on header height */
+            left: 0;
+            width: 100%;
+            box-shadow: var(--shadow);
+            border-top: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+        .mobile-nav.is-open {
+            display: flex;
+        }
+        .mobile-nav a {
+            padding: 0.8rem 1.5rem;
+            color: var(--text);
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .mobile-nav a:last-child {
+            border-bottom: none;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            /* Using rgba values derived from --secondary and --primary for the gradient */
+            background: linear-gradient(rgba(30,126,52,0.25), rgba(14,58,94,0.35)); /*, url('https://placehold.co/1920x600/1e7e34/ffffff?text=Services%20Fonciers%20AfriPropConnect') center/cover no-repeat;*/ /* Placeholder image for land services */
+            color: var(--surface);
+            text-align: center;
+            padding: 3.5rem 1rem 4.5rem 1rem;
+            border-bottom-left-radius: var(--radius);
+            border-bottom-right-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .hero-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+            color: var(--surface);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .hero p {
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            /* Using a lighter shade of surface for contrast on dark background */
+            color: #e0e7ef; 
+            text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        .cta-btn {
+            background: var(--primary);
+            color: var(--surface);
+            border: none;
+            padding: 0.9rem 2rem;
+            font-size: 1.05rem;
+            border-radius: 28px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(14,58,94,0.15);
+            transition: background 0.2s, color 0.2s, transform 0.1s;
+        }
+        .cta-btn:hover { 
+            background: var(--accent); 
+            color: var(--text);
+            transform: translateY(-1px);
+        }
+        /* Section General */
+        .section {
+            padding: 2.5rem 1rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-title {
+            color: var(--primary);
+            font-size: 1.9rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+        }
+        .intro-text {
+            font-size: 1.08rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--muted);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Service Cards Grid */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .service-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.15s, box-shadow 0.15s;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+        }
+        .service-card:hover { 
+            transform: translateY(-3px) scale(1.005);
+            box-shadow: 0 6px 20px rgba(14,58,94,0.12);
+            border-color: var(--secondary);
+        }
+        .service-icon {
+            color: var(--secondary); /* Uses secondary color */
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+        .service-card h3 {
+            color: var(--primary); /* Uses primary color */
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+        .service-card p {
+            color: var(--text); /* Uses text color */
+            font-size: 0.98rem;
+            margin-bottom: 1rem;
+            flex-grow: 1; /* Allows description to take available space */
+        }
+        .service-card ul {
+            list-style: disc;
+            margin: 0.5rem 0 1.2rem 1.2rem;
+            padding: 0;
+            font-size: 0.92rem;
+            color: var(--muted); /* Uses muted color */
+        }
+        .service-card .cta-btn {
+            align-self: center; /* Center button */
+            margin-top: auto; /* Push button to bottom */
+            font-size: 0.95rem;
+            padding: 0.7rem 1.4rem;
+            background: var(--accent); /* Uses accent color */
+            color: var(--surface); /* Uses surface color */
+        }
+        .service-card .cta-btn:hover {
+            background: var(--primary); /* Uses primary color on hover */
+            color: var(--surface); /* Uses surface color on hover */
+        }
+
+        /* How it works */
+        .how-it-works {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2.5rem;
+        }
+        .step {
+            background: var(--surface); /* Uses surface color */
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem 1.2rem;
+            max-width: 280px;
+            flex: 1 1 220px;
+            text-align: center;
+            border: 1px solid var(--border); /* Uses border color */
+            transition: transform 0.1s;
+        }
+        .step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(14,58,94,0.1);
+        }
+        .step-icon {
+            color: var(--secondary); /* Uses secondary color */
+            font-size: 2.5rem;
+            margin-bottom: 0.6rem;
+        }
+        .step h4 {
+            color: var(--primary); /* Uses primary color */
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+        .step p {
+            color: var(--muted); /* Uses muted color */
+            font-size: 0.95rem;
+        }
+
+        /* Why choose */
+        .why-choose {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+        .why-card {
+            background: var(--surface); /* Uses surface color */
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border); /* Uses border color */
+            transition: transform 0.1s;
+        }
+        .why-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(14,58,94,0.1);
+        }
+        .why-card strong {
+            color: var(--secondary); /* Uses secondary color */
+            font-size: 1.05rem;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+        .why-card p {
+            color: var(--muted); /* Uses muted color */
+            font-size: 0.95rem;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: var(--surface); /* Uses surface color */
+            color: var(--text); /* Uses text color */
+            border-radius: var(--radius);
+            padding: 2rem 1.5rem;
+            margin: 3rem auto;
+            max-width: 700px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border); /* Uses border color */
+        }
+        .form-section h2 { 
+            color: var(--primary); /* Uses primary color */
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .form-section p {
+            color: var(--muted); /* Uses muted color */
+            font-size: 1.05rem;
+            text-align: center;
+            margin-bottom: 1.8rem;
+        }
+        .service-form {
+            display: grid;
+            gap: 1rem;
+        }
+        .service-form label { 
+            font-weight: 600; 
+            color: var(--primary); /* Uses primary color */
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .service-form input, 
+        .service-form select, 
+        .service-form textarea {
+            padding: 0.65rem;
+            border-radius: 8px;
+            border: 1px solid var(--border); /* Uses border color */
+            width: calc(100% - 1.3rem); /* Adjust for padding */
+            font-size: 1rem;
+            /* This specific hex code is a light blueish background, fitting the theme */
+            background: #eaf1f7; 
+            color: var(--text); /* Uses text color */
+            box-sizing: border-box; /* Include padding in width */
+        }
+        .service-form textarea { 
+            min-height: 100px; 
+            resize: vertical; /* Allow vertical resizing */
+        }
+        .service-form button {
+            background: var(--primary); /* Uses primary color */
+            color: var(--surface); /* Uses surface color */
+            border: none;
+            padding: 0.85rem 1.8rem;
+            border-radius: 28px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s, transform 0.1s;
+            width: auto; /* Adjust button width */
+            margin-left: auto;
+            margin-right: auto;
+            display: block; /* Center button */
+        }
+        .service-form button:hover { 
+            background: var(--accent); /* Uses accent color on hover */
+            color: var(--text); /* Uses text color on hover */
+            transform: translateY(-1px);
+        }
+
+        /* FAQ */
+        .faq {
+            margin-top: 2.5rem;
+        }
+        .faq-item {
+            background: var(--surface); /* Uses surface color */
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            padding: 1rem 1.2rem;
+            box-shadow: 0 1px 6px rgba(14,58,94,0.05);
+            border: 1px solid var(--border); /* Uses border color */
+        }
+        .faq-question {
+            font-weight: 600;
+            color: var(--primary); /* Uses primary color */
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+        }
+        .faq-answer {
+            color: var(--muted); /* Uses muted color */
+            font-size: 0.95rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--primary); /* Uses primary color */
+            color: var(--surface); /* Uses surface color */
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top-left-radius: var(--radius);
+            border-top-right-radius: var(--radius);
+            font-size: 0.95rem;
+        }
+        .footer a {
+            color: var(--accent); /* Uses accent color */
+            margin: 0 0.6rem;
+            font-weight: 500;
+        }
+        .footer a:hover {
+            color: var(--surface); /* Uses surface color on hover */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 1.6rem; }
+            .intro-text { font-size: 1rem; }
+            .service-grid { gap: 1rem; }
+            .service-card { padding: 1.2rem; }
+            .service-card h3 { font-size: 1.15rem; }
+            .service-card p { font-size: 0.9rem; }
+            .how-it-works { gap: 1rem; }
+            .step { padding: 1.2rem 0.8rem; }
+            .step h4 { font-size: 1.05rem; }
+            .why-choose { gap: 0.8rem; }
+            .why-card { padding: 1rem; }
+            .why-card strong { font-size: 1rem; }
+            .form-section { padding: 1.5rem 1rem; }
+            .service-form input, .service-form select, .service-form textarea { font-size: 0.95rem; }
+
+            .nav-links { display: none; } /* Hide desktop nav */
+            .menu-toggle { display: block; } /* Show hamburger */
+            .mobile-nav.is-open { display: flex; } /* Show mobile nav when open */
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 2.5rem 0.8rem 3.5rem 0.8rem; }
+            .hero h1 { font-size: 1.6rem; }
+            .hero p { font-size: 0.95rem; }
+            .section { padding: 1.5rem 0.8rem; }
+            .section-title { font-size: 1.4rem; }
+            .intro-text { font-size: 0.95rem; }
+            .service-grid { grid-template-columns: 1fr; } /* Stack cards on small screens */
+            .how-it-works { grid-template-columns: 1fr; } /* Stack steps */
+            .step { max-width: 100%; }
+            .why-choose { grid-template-columns: 1fr; } /* Stack why cards */
+            .form-section { padding: 1rem 0.8rem; }
+            .service-form button { font-size: 0.95rem; padding: 0.7rem 1.2rem; }
+            .faq-question { font-size: 1rem; }
+            .faq-answer { font-size: 0.9rem; }
+            .footer { padding: 1.5rem 0.8rem; }
+        }

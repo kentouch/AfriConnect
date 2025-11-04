@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Services Fonciers | AfriConnect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'land_services/style/style.css' %}">
+    <!-- Unified AfriPropConnect Styles -->
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="main-header">
+        <a href="#" class="logo">AfriConnect</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{% url 'real_estate:home' %}">Accueil</a></li>
+                <li><a href="{% url 'real_estate:property_list' %}">Propriétés</a></li>
+                <li><a href="{% url 'land_services:land_services' %}" style="border-bottom: 2px solid var(--primary);">Land Services</a></li>
+                <li><a href="{% url 'tourism:tourism' %}">Tourisme</a></li>
+                
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Menu (Hidden by default, toggled by JS) -->
+    <nav class="mobile-nav" id="mobile-nav-links">
+        <a href="{% url 'real_estate:home' %}">Accueil</a>
+        <a href="{% url 'real_estate:property_list' %}">Propriétés</a>
+        <a href="{% url 'land_services:land_services' %}" style="border-bottom: 2px solid var(--primary);">Land Services</a>
+        <a href="{% url 'tourism:tourism' %}">Tourisme</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Optimisez Votre Investissement Foncier en Afrique.</h1>
+            <p style="color: var(--secondary);">Découvrez nos services spécialisés d'entretien et de gestion foncière, adaptés aux spécificités de chaque région africaine.</p>
+            <button class="cta-btn" onclick="document.getElementById('service-form-section').scrollIntoView({behavior:'smooth'})">Demander un Service</button>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="section">
+        <h2 class="section-title" style="color: var(--secondary);">Votre Partenaire pour la Valeur et la Productivité de Vos Terres</h2>
+        <div class="intro-text">
+            Chez AfriConnect, nous comprenons que la valeur d'une propriété va au-delà de son acquisition. Pour les investisseurs, les agriculteurs et les propriétaires, l'entretien et la gestion efficaces de la terre sont essentiels à la prospérité. Nos services fonciers sont conçus pour garantir la santé, la productivité et la conformité de vos terrains, où que vous soyez en Afrique.
+        </div>
+    </section>
+
+    <!-- Detailed Service Sections -->
+    <section class="section">
+        <h2 class="section-title" style="color: var(--secondary);">Nos Services Spécialisés</h2>
+        <div class="service-grid">
+            <!-- Service: Préparation et Défrichage -->
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-tree"></i></div>
+                <h3>Défrichage & Préparation : La Base de Tout Projet Réussi</h3>
+                <p>Qu'il s'agisse de préparer un site pour la construction d'une villa moderne à <strong>Kigali</strong> sur des terrains vallonnés, de défricher un terrain vierge pour une nouvelle culture au <strong>Burundi</strong>, de dégager une zone pour l'éco-tourisme au cœur de la forêt gabonaise, ou d'aménager un espace côtier au <strong>Sénégal</strong>, nos experts assurent une préparation du sol efficace et respectueuse de l'environnement.</p>
+                <ul>
+                    <li>Optimisation de l'espace</li>
+                    <li>Préparation pour la construction ou l'agriculture</li>
+                    <li>Élimination des obstacles</li>
+                </ul>
+                <button class="cta-btn" onclick="document.getElementById('service-form-section').scrollIntoView({behavior:'smooth'})">Obtenir un Devis</button>
+            </div>
+
+            <!-- Service: Analyse et Amélioration des Sols -->
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-flask"></i></div>
+                <h3>Analyse des Sols : Le Secret d'une Terre Fertile</h3>
+                <p>Comprendre votre sol est la première étape vers une agriculture prospère ou un aménagement durable. Nos analyses détaillées révèlent la composition de vos terres, qu'elles soient les riches sols volcaniques du <strong>Rwanda</strong>, les terrains agricoles variés du <strong>Burundi</strong>, les substrats forestiers du <strong>Gabon</strong>, ou les sols sableux du <strong>Sénégal</strong>. Nous proposons ensuite des solutions personnalisées pour l'amendement, l'enrichissement et la conservation des sols.</p>
+                <ul>
+                    <li>Rendements agricoles améliorés</li>
+                    <li>Gestion de l'eau optimisée</li>
+                    <li>Agriculture durable</li>
+                </ul>
+                <button class="cta-btn" onclick="document.getElementById('service-form-section').scrollIntoView({behavior:'smooth'})">Demander une Analyse</button>
+            </div>
+
+            <!-- Service: Installation de Systèmes d'Irrigation -->
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-faucet"></i></div>
+                <h3>Solutions d'Irrigation : L'Eau, Source de Vie et de Prospérité</h3>
+                <p>Dans des climats variés, de la saison sèche au <strong>Sénégal</strong> à l'humidité du <strong>Gabon</strong>, une gestion intelligente de l'eau est cruciale. Nous concevons et installons des systèmes d'irrigation modernes et efficaces – goutte-à-goutte, micro-aspersion, ou pivots – adaptés à la taille et au type de votre projet. Assurez une alimentation en eau constante et responsable pour vos cultures ou vos paysages.</p>
+                <ul>
+                    <li>Croissance végétale optimisée</li>
+                    <li>Économie d'eau</li>
+                    <li>Fiabilité des cultures</li>
+                </ul>
+                <button class="cta-btn" onclick="document.getElementById('service-form-section').scrollIntoView({behavior:'smooth'})">Consulter Nos Experts</button>
+            </div>
+
+            <!-- Service: Accompagnement Achat/Location de Terrains Agricoles -->
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-tractor"></i></div>
+                <h3>Accompagnement Achat/Location de Terrains Agricoles : Votre Investissement Vert</h3>
+                <p>Au-delà de l'entretien, nous vous connectons directement aux meilleures opportunités de terrains agricoles. Que vous recherchiez des terres fertiles pour l'élevage au <strong>Burundi</strong>, des parcelles adaptées à l'horticulture moderne près de <strong>Kigali</strong>, des concessions pour l'agroforesterie au <strong>Gabon</strong>, ou des champs pour les cultures d'exportation au <strong>Sénégal</strong>, nous facilitons votre acquisition ou location.</p>
+                <ul>
+                    <li>Accès aux meilleures parcelles</li>
+                    <li>Expertise légale et foncière</li>
+                    <li>Investissement sécurisé</li>
+                </ul>
+                <a href="#" class="cta-btn">Explorer les Terrains Agricoles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Work -->
+    <section class="section">
+        <h2 class="section-title" style="color: var(--secondary);">Votre Service Foncier en 3 Étapes Simples</h2>
+        <div class="how-it-works">
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-file-alt"></i></div>
+                <h4>Décrivez Votre Besoin</h4>
+                <p>Remplissez notre formulaire détaillé en ligne avec les spécificités de votre terrain et de votre projet.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-calculator"></i></div>
+                <h4>Recevez Votre Devis</h4>
+                <p>Nos experts évaluent votre demande et vous envoient une proposition personnalisée et transparente.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-handshake"></i></div>
+                <h4>Action & Réalisation</h4>
+                <p>Après validation, nos équipes interviennent rapidement pour concrétiser votre projet foncier.</p>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:2rem;">
+            <button class="cta-btn" onclick="document.getElementById('service-form-section').scrollIntoView({behavior:'smooth'})">Demander Votre Devis Gratuit</button>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section">
+        <h2 class="section-title" style="color: var(--secondary);">L'Expertise Locale, le Standard Mondial</h2>
+        <div class="why-choose">
+            <div class="why-card">
+                <strong>Expertise Locale Approfondie</strong>
+                <p>Connaissance des spécificités foncières, climatiques et réglementaires de chaque pays (Sénégal, Burundi, Rwanda, Gabon).</p>
+            </div>
+            <div class="why-card">
+                <strong>Équipes Qualifiées</strong>
+                <p>Nos professionnels sont expérimentés en agronomie, aménagement paysager et ingénierie.</p>
+            </div>
+            <div class="why-card">
+                <strong>Approche Durable</strong>
+                <p>Services respectueux de l'environnement et des écosystèmes locaux pour une prospérité à long terme.</p>
+            </div>
+            <div class="why-card">
+                <strong>Technologie de Pointe</strong>
+                <p>Utilisation d'outils modernes pour l'analyse, la planification et l'exécution des travaux.</p>
+            </div>
+            <div class="why-card">
+                <strong>Accompagnement Personnalisé</strong>
+                <p>Un interlocuteur dédié pour chaque projet, assurant un suivi et des conseils sur mesure.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Inquiry Form -->
+    <section class="form-section" id="service-form-section">
+    <h2 style="color: var(--secondary);">Demandez Votre Devis Gratuit Aujourd'hui !</h2>
+    <p>Décrivez-nous votre besoin et nos experts vous contacteront rapidement pour une proposition personnalisée.</p>
+
+    <form method="post" class="service-form">
+        {% csrf_token %}
+        
+        <div>
+            <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+            {{ form.name }}
+        </div>
+        
+        <div>
+            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+            {{ form.email }}
+        </div>
+        
+        <div>
+            <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+            {{ form.phone }}
+        </div>
+        
+        <div>
+            <label for="{{ form.country.id_for_label }}">{{ form.country.label }}</label>
+            {{ form.country }}
+        </div>
+        
+        <div>
+            <label for="{{ form.service_type.id_for_label }}">{{ form.service_type.label }}</label>
+            {{ form.service_type }}
+        </div>
+        
+        <div>
+            <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+            {{ form.description }}
+        </div>
+        
+        <div>
+            <label for="{{ form.desired_dates.id_for_label }}">{{ form.desired_dates.label }}</label>
+            {{ form.desired_dates }}
+        </div>
+        
+        <button type="submit">Soumettre la Demande</button>
+    </form>
+</section>
+
+
+    <!-- FAQ -->
+    <section class="section faq">
+        <h2 class="section-title" style="color: var(--secondary);"><b>Foire Aux Questions</b></h2>
+        <div class="faq-item">
+            <div class="faq-question">Combien de temps prend un projet de défrichage ?</div>
+            <div class="faq-answer">La durée dépend de la taille du terrain, de la densité de la végétation et des spécificités du sol. Nous vous fournirons une estimation détaillée après évaluation.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Quel est le coût d'une analyse de sol ?</div>
+            <div class="faq-answer">Le coût varie selon la profondeur de l'analyse et les tests requis. Un devis personnalisé vous sera remis après discussion de vos besoins.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Travaillez-vous dans toutes les régions de ces pays ?</div>
+            <div class="faq-answer">Oui, nous avons des équipes et des partenaires locaux dans les principales régions de chaque pays mentionné pour assurer une couverture étendue.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Puis-je combiner plusieurs services dans une seule demande ?</div>
+            <div class="faq-answer">Absolument ! Notre formulaire est conçu pour que vous puissiez spécifier tous vos besoins en une seule fois.</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div>
+            &copy; 2025 AfriPropConnect. Tous droits réservés. | <a href="#">Accueil</a> | <a href="#">Contact</a> | <a href="#">Politique de Confidentialité</a>
+        </div>
+        <div style="margin-top:0.5rem;">
+            Suivez-nous :
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu');
+            const mobileNavLinks = document.getElementById('mobile-nav-links');
+
+            if (mobileMenuToggle && mobileNavLinks) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileNavLinks.classList.toggle('is-open');
+                });
+            }
+        });
+
+        // scripts for smooth scrolling for all buttons with data-scroll-to attribute
+        document.querySelectorAll('.cta-btn[data-scroll-to]').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const targetId = this.getAttribute('data-scroll-to');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+         
+        // script for form submission
+        const serviceForm = document.getElementById('service-form');
+        const serviceResponseMessage = document.getElementById('serviceResponseMessage');
+        if (serviceForm && serviceResponseMessage) {
+            serviceForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+
+                serviceResponseMessage.style.display = 'none';
+                serviceResponseMessage.classList.remove('error', 'show');
+
+                // Show "sending" state
+                serviceResponseMessage.textContent = 'Envoi de votre demande...';
+                serviceResponseMessage.style.display = 'block';
+                serviceResponseMessage.style.backgroundColor = '#fff3cd'; // yellow-ish for processing
+                serviceResponseMessage.style.color = '#856404';
+                serviceResponseMessage.classList.add('show');
+
+                const formData = new FormData(serviceForm);
+                const data = Object.fromEntries(formData.entries());
+
+                const backendEndpoint = "{% url 'land_services:submit_land_service_request' %}"; // <-- must match your Django URLConf
+
+                try {
+                    const response = await fetch(backendEndpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken'), // Include CSRF token for Django
+                        },
+                        body: JSON.stringify(data),
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();           
+                        // this success message needs to appear to the tourism page
+                        serviceResponseMessage.classList.add('success');
+                        serviceResponseMessage.classList.remove('error');  
+                        serviceResponseMessage.textContent = result.message || 'Votre demande a été envoyée avec succès !';
+                        serviceResponseMessage.style.backgroundColor = '#d4edda';
+                        serviceResponseMessage.style.color = '#155724';
+                        serviceForm.reset(); // Clear the form
+                    } else {
+                        const errorResult = await response.json();
+                        serviceResponseMessage.textContent = errorResult.message || 'Une erreur est survenue lors de l\'envoi de votre demande.';
+                        serviceResponseMessage.classList.add('error');
+                        serviceResponseMessage.style.backgroundColor = '#f8d7da';
+                        serviceResponseMessage.style.color = '#721c24';
+                    }
+                } catch (error) {
+                    console.error('Erreur inattendue:', error);
+                    serviceResponseMessage.textContent = 'Impossible de se connecter au serveur. Veuillez réessayer plus tard.';
+                    serviceResponseMessage.classList.add('error');
+                    serviceResponseMessage.style.backgroundColor = '#f8d7da';
+                    serviceResponseMessage.style.color = '#721c24';
+                } 
+                    }
+                );
+            }
+        // Function to get CSRF token from cookies
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Check if this cookie string begins with the name we want
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        // 
+    </script>
+</body>
+</html>

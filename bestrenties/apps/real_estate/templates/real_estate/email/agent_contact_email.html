@@ -1,0 +1,33 @@
+<!-- real_estate/templates/real_estate/email/agent_contact_email.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nouvelle demande de contact pour une propriété</title>
+</head>
+<body>
+    <p>Bonjour,</p>
+    <p>Vous avez reçu une nouvelle demande de contact via le formulaire de la propriété sur AfriPropConnect.</p>
+    
+    <h3>Détails du contact :</h3>
+    <ul>
+        <li><strong>Nom :</strong> {{ contact.name }}</li>
+        <li><strong>Email :</strong> {{ contact.email }}</li>
+        {% if contact.phone %}
+        <li><strong>Téléphone :</strong> {{ contact.phone }}</li>
+        {% endif %}
+        <li><strong>Message :</strong><br>{{ contact.message|linebreaksbr }}</li>
+    </ul>
+
+    <h3>Détails de la propriété concernée :</h3>
+    <ul>
+        <li><strong>Titre :</strong> {{ property.title }}</li>
+        <li><strong>Localisation :</strong> {{ property.location_city }}, {{ property.get_location_country_display }}</li>
+        <li><strong>Type :</strong> {{ property.get_property_type_display }} ({{ property.get_transaction_type_display }})</li>
+        <li><strong>Prix :</strong> {{ property.price }} USD</li>
+        <li><strong>Lien vers la propriété :</strong> <a href="http://votre-domaine.com/proprietes/{{ property.pk }}/">Voir la propriété sur le site</a></li>
+    </ul>
+
+    <p>Cordialement,</p>
+    <p>L'équipe AfriPropConnect</p>
+</body>
+</html>

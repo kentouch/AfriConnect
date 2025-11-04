@@ -1,0 +1,30 @@
+<!-- land_services/templates/land_services/email/land_service_request_email.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nouvelle demande de service foncier</title>
+</head>
+<body>
+    <p>Bonjour,</p>
+    <p>Vous avez reçu une nouvelle demande de service foncier via AfriPropConnect.</p>
+    
+    <h3>Détails de la demande :</h3>
+    <ul>
+        <li><strong>Nom :</strong> {{ request.name }}</li>
+        <li><strong>Email :</strong> {{ request.email }}</li>
+        {% if request.phone %}
+        <li><strong>Téléphone :</strong> {{ request.phone }}</li>
+        {% endif %}
+        <li><strong>Pays de la propriété :</strong> {{ request.get_country_display }}</li>
+        <li><strong>Type de service :</strong> {{ request.get_service_type_display }}</li>
+        <li><strong>Description :</strong><br>{{ request.description|linebreaksbr }}</li>
+        {% if request.desired_dates %}
+        <li><strong>Dates / Délais souhaités :</strong> {{ request.desired_dates }}</li>
+        {% endif %}
+        <li><strong>Date de la demande :</strong> {{ request.request_date }}</li>
+    </ul>
+
+    <p>Cordialement,</p>
+    <p>L'équipe AfriPropConnect</p>
+</body>
+</html>

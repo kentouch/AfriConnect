@@ -1,0 +1,57 @@
+/* Section de la barre de recherche (optimisée pour la visualisation et la flexibilité) */
+        .search-bar {
+            background: var(--surface);
+            padding: 2.5rem 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            max-width: 1000px;
+            margin: -4rem auto 3rem auto; /* Chevauche la section héro pour un effet visuel */
+            display: flex; /* Utilise Flexbox pour organiser les champs de recherche */
+            flex-direction: row; /* MODIFIÉ: Affiche les éléments horizontalement par défaut */
+            flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si l'espace est insuffisant */
+            gap: 1rem; /* Espacement entre les champs de recherche */
+            justify-content: center; /* Centre les éléments horizontalement */
+            align-items: flex-end; /* MODIFIÉ: Aligne les éléments en bas de leur conteneur */
+            border: 1px solid var(--border);
+        }
+        .search-bar .input-group {
+            flex: 1; /* Permet aux groupes d'input de prendre l'espace disponible */
+            min-width: 180px; /* Largeur minimale pour chaque champ, assure la lisibilité sur les petits écrans */
+            /* Cette combinaison de flex: 1 et min-width rend la barre de recherche très flexible */
+        }
+        .search-bar label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .search-bar input[type="text"],
+        .search-bar input[type="number"],
+        .search-bar select {
+            width: 100%; /* Les champs de saisie et les sélecteurs remplissent leur groupe d'input */
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #eaf1f7; /* Arrière-plan légèrement bleuté pour les champs */
+            color: var(--text);
+            box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
+        }
+        .search-bar button {
+            background: var(--secondary);
+            color: var(--surface);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 2px 8px rgba(30,126,52,0.2);
+            width: auto; /* MODIFIÉ: Le bouton prend la largeur de son contenu */
+            margin-top: 0; /* MODIFIÉ: Supprime la marge supérieure pour l'alignement horizontal */
+        }
+        .search-bar button:hover {
+            background: var(--primary);
+            transform: translateY(-1px);
+        }

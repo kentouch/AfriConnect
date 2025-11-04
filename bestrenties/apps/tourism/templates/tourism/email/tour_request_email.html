@@ -1,0 +1,27 @@
+<!-- tourism/templates/tourism/email/tour_request_email.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nouvelle demande de voyage</title>
+</head>
+<body>
+    <p>Bonjour,</p>
+    <p>Vous avez reçu une nouvelle demande de voyage via AfriPropConnect.</p>
+    
+    <h3>Détails de la demande :</h3>
+    <ul>
+        <li><strong>Nom :</strong> {{ request.name }}</li>
+        <li><strong>Email :</strong> {{ request.email }}</li>
+        {% if request.phone %}
+        <li><strong>Téléphone :</strong> {{ request.phone }}</li>
+        {% endif %}
+        <li><strong>Pays(s) d'intérêt :</strong> {{ request.get_country_interest_display }}</li>
+        <li><strong>Type de voyage :</strong> {{ request.get_travel_type_display }}</li>
+        <li><strong>Message :</strong><br>{{ request.description|linebreaksbr }}</li>
+        <li><strong>Date de la demande :</strong> {{ request.request_date }}</li>
+    </ul>
+
+    <p>Cordialement,</p>
+    <p>L'équipe AfriPropConnect</p>
+</body>
+</html>

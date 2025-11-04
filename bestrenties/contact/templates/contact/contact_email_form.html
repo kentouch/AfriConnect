@@ -1,0 +1,26 @@
+<!-- contact/templates/contact/email/contact_message_email.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nouveau message de contact</title>
+</head>
+<body>
+    <p>Bonjour,</p>
+    <p>Vous avez reçu un nouveau message via le formulaire de contact général d'AfriPropConnect.</p>
+    
+    <h3>Détails du message :</h3>
+    <ul>
+        <li><strong>Nom :</strong> {{ message_obj.name }}</li>
+        <li><strong>Email :</strong> {{ message_obj.email }}</li>
+        {% if message_obj.phone %}
+        <li><strong>Téléphone :</strong> {{ message_obj.phone }}</li>
+        {% endif %}
+        <li><strong>Sujet :</strong> {{ message_obj.subject }}</li>
+        <li><strong>Message :</strong><br>{{ message_obj.message|linebreaksbr }}</li>
+        <li><strong>Date d'envoi :</strong> {{ message_obj.sent_date }}</li>
+    </ul>
+
+    <p>Cordialement,</p>
+    <p>L'équipe AfriPropConnect</p>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% extends 'real_estate/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Héro titre simple -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Propriétés Disponibles</h1>
+        <p>Affinez votre recherche avec notre filtre intelligent ci-dessous.</p>
+    </div>
+</section>
+
+<!-- Barre de recherche -->
+<section id="search-bar-section">
+    <form method="get" action="{% url 'real_estate:property_list' %}" class="search-bar">
+        <div class="input-group">
+            {{ form.location_search.label_tag }}
+            {{ form.location_search }}
+        </div>
+        <div class="input-group">
+            {{ form.transaction_type.label_tag }}
+            {{ form.transaction_type }}
+        </div>
+        <div class="input-group">
+            {{ form.property_type.label_tag }}
+            {{ form.property_type }}
+        </div>
+        <div class="input-group">
+            {{ form.min_budget.label_tag }}
+            {{ form.min_budget }}
+        </div>
+        <div class="input-group">
+            {{ form.max_budget.label_tag }}
+            {{ form.max_budget }}
+        </div>
+        <button type="submit">Rechercher</button>
+    </form>
+</section>
+
+<!-- Liste des propriétés -->
+<section class="section">
+    <h2 class="section-title">Résultats</h2>
+    <div class="properties-grid">
+        {% if properties %}
+            {% for property in properties %}
+            <div class="property-card">
+                <img src="{{ property.main_image.url|default:'https://placehold.co/400x250' }}" alt="{{ property.title }}" class="property-img">
+                <div class="property-content">
+                    <span class="property-tag">{{ property.get_transaction_type_display }} - {{ property.get_property_type_display }}</span>
+                    <h3>{{ property.title }}</h3>
+                    <p>{{ property.description|truncatewords:20 }}</p>
+                    <span class="property-price">{{ property.price|floatformat:"0" }} USD</span>
+                    <a href="{% url 'real_estate:property_detail' property.pk %}" class="cta-btn">Voir les détails</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align:center; color: var(--muted);">Aucune propriété ne correspond à votre recherche.</p>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Pied de page -->
+<footer class="footer">
+    <p>&copy; 2025 AfriPropConnect. Tous droits réservés.</p>
+</footer>
+
+{% endblock content %}

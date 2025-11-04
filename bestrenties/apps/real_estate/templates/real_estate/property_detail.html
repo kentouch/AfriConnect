@@ -1,0 +1,268 @@
+{% extends 'real_estate/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Font Awesome for icons -->
+<!<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+    /* It is recommended to move these styles to your main style.css file */
+    .property-detail-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 1rem;
+        font-family: var(--font-sans);
+    }
+    .property-detail-header {
+        margin-bottom: 2rem;
+    }
+    .property-detail-header h1 {
+        font-size: 2.5rem;
+        color: var(--headings);
+        margin-bottom: 0.5rem;
+    }
+    .property-detail-header .location {
+        font-size: 1.1rem;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .property-detail-layout {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2.5rem;
+        align-items: flex-start;
+    }
+    /* Gallery Styles */
+    .property-gallery .main-image img {
+        width: 100%;
+        height: 450px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        border: 1px solid #eee;
+    }
+    .thumbnail-images {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 0.75rem;
+    }
+    .thumbnail-images img {
+        width: 100%;
+        height: 75px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 4px;
+        opacity: 0.6;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        border: 2px solid transparent;
+    }
+    .thumbnail-images img:hover {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    .thumbnail-images img.active {
+        opacity: 1;
+        border-color: var(--primary);
+    }
+    /* Main Info Styles */
+    .property-main-info .price {
+        font-size: 2.2rem;
+        font-weight: bold;
+        color: var(--primary);
+        margin: 1.5rem 0;
+    }
+    .key-features {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+        padding: 1.5rem 0;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        flex-wrap: wrap;
+    }
+    .key-features .feature {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--text);
+    }
+    .key-features .feature i {
+        color: var(--primary);
+        font-size: 1.2rem;
+    }
+    .property-description {
+        line-height: 1.7;
+        color: var(--text);
+    }
+    /* Agent Contact Card Styles */
+    .agent-contact-card {
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        position: sticky;
+        top: 2rem;
+    }
+    .agent-contact-card h3 {
+        margin-top: 0;
+        border-bottom: 2px solid var(--primary);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    .agent-contact-form .form-group {
+        margin-bottom: 1rem;
+    }
+    .agent-contact-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+    .agent-contact-form input,
+    .agent-contact-form textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .message-box {
+        padding: 1rem;
+        border-radius: 4px;
+        margin-top: 1rem;
+        display: none;
+        text-align: center;
+    }
+    .message-box.success { background-color: #d4edda; color: #155724; }
+    .message-box.error { background-color: #f8d7da; color: #721c24; }
+
+    @media (max-width: 992px) {
+        .property-detail-layout {
+            grid-template-columns: 1fr;
+        }
+        .agent-contact-card {
+            position: static;
+            margin-top: 2rem;
+        }
+    }
+</style>
+
+<div class="property-detail-container">
+    <div class="property-detail-header">
+        <h1>{{ property.title }}</h1>
+        <div class="location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>{{ property.location_city }}, {{ property.get_location_country_display }}</span>
+        </div>
+    </div>
+
+    <div class="property-detail-layout">
+        <!-- Left Column: Gallery and Details -->
+        <div class="property-details-left">
+            <div class="property-gallery">
+                <div class="main-image">
+                    <img id="mainPropertyImage" src="{{ property.main_image.url|default:'https://placehold.co/800x500' }}" alt="{{ property.title }}">
+                </div>
+                <div class="thumbnail-images">
+                    {% if property.main_image %}<img src="{{ property.main_image.url }}" alt="Thumbnail 1" class="thumbnail active">{% endif %}
+                    {% if property.image1 %}<img src="{{ property.image1.url }}" alt="Thumbnail 2" class="thumbnail">{% endif %}
+                    {% if property.image2 %}<img src="{{ property.image2.url }}" alt="Thumbnail 3" class="thumbnail">{% endif %}
+                    {% if property.image3 %}<img src="{{ property.image3.url }}" alt="Thumbnail 4" class="thumbnail">{% endif %}
+                    {% if property.image4 %}<img src="{{ property.image4.url }}" alt="Thumbnail 5" class="thumbnail">{% endif %}
+                </div>
+            </div>
+
+            <div class="property-main-info">
+                <div class="price"> {{ property.get_transaction_type_display}} {{ property.price|floatformat:"0" }} USD / mois</div>
+                <div class="key-features">
+                    {% if property.bedrooms %}
+                    <div class="feature"><i class="fas fa-bed"></i><span>{{ property.bedrooms }} Chambres</span></div>
+                    {% endif %}
+                    {% if property.bathrooms %}
+                    <div class="feature"><i class="fas fa-bath"></i><span>{{ property.bathrooms|floatformat }} Salles de bain</span></div>
+                    {% endif %}
+                    {% if property.surface_area %}
+                    <div class="feature"><i class="fas fa-ruler-combined"></i><span>{{ property.surface_area|floatformat:"0" }} m²</span></div>
+                    {% endif %}
+                </div>
+                <div class="property-description">
+                    <h3>Description</h3>
+                    <p>{{ property.description|linebreaks }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Agent Contact Form -->
+        <div class="agent-contact-card">
+            <h3>Contacter l'Agent</h3>
+            <form id="agentContactForm" class="agent-contact-form">
+                {% csrf_token %}
+                <input type="hidden" name="property" value="{{ property.pk }}">
+                <div class="form-group">{{ agent_contact_form.name.label_tag }}{{ agent_contact_form.name }}</div>
+                <div class="form-group">{{ agent_contact_form.email.label_tag }}{{ agent_contact_form.email }}</div>
+                <div class="form-group">{{ agent_contact_form.phone.label_tag }}{{ agent_contact_form.phone }}</div>
+                <div class="form-group">{{ agent_contact_form.message.label_tag }}{{ agent_contact_form.message }}</div>
+                <button type="submit" class="cta-btn" style="width: 100%;">Envoyer le Message</button>
+            </form>
+            <div id="responseMessage" class="message-box"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Image Gallery Logic
+    const mainImage = document.getElementById('mainPropertyImage');
+    const thumbnails = document.querySelectorAll('.thumbnail-images .thumbnail');
+
+    thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            mainImage.src = this.src;
+            thumbnails.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Agent Contact Form AJAX Submission
+    const contactForm = document.getElementById('agentContactForm');
+    const responseMessage = document.getElementById('responseMessage');
+
+    contactForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        responseMessage.style.display = 'none';
+        responseMessage.className = 'message-box';
+
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch("{% url 'real_estate:contact_agent_api' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': data.csrfmiddlewaretoken,
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+            responseMessage.textContent = result.message;
+            if (response.ok) {
+                responseMessage.classList.add('success');
+                contactForm.reset();
+            } else {
+                responseMessage.classList.add('error');
+                console.error('Form errors:', result.errors);
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            responseMessage.textContent = 'Une erreur de réseau est survenue. Veuillez réessayer.';
+            responseMessage.classList.add('error');
+        } finally {
+            responseMessage.style.display = 'block';
+        }
+    });
+});
+</script>
+
+{% endblock %}

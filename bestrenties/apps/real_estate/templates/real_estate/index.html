@@ -1,0 +1,185 @@
+{% extends 'real_estate/base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Votre Porte d'Entrée vers l'Immobilier Africain.</h1>
+            <p>Connectant les opportunités immobilières, les services fonciers essentiels et les trésors touristiques à travers le continent.</p>
+           <button class="cta-btn" onclick="document.getElementById('search-bar-section').scrollIntoView({behavior:'smooth'})">Commencez Votre Recherche</button>
+        </div>
+    </section>
+
+    <br>
+    <br>
+
+    <!-- Formulaire de recherche -->
+<!--<section  id="search-bar-section">
+    <form method="get" action="{% url 'real_estate:property_list' %}" class="search-bar">
+        <div class="input-group">
+            {{ search_form.location_search.label_tag }}
+            {{ search_form.location_search }}
+        </div>
+        <div class="input-group">
+            {{ search_form.transaction_type.label_tag }}
+            {{ search_form.transaction_type }}
+        </div>
+        <div class="input-group">
+            {{ search_form.property_type.label_tag }}
+            {{ search_form.property_type }}
+        </div>
+        <div class="input-group">
+            {{ search_form.min_budget.label_tag }}
+            {{ search_form.min_budget }}
+        </div>
+        <div class="input-group">
+            {{ search_form.max_budget.label_tag }}
+            {{ search_form.max_budget }}
+        </div>
+        <button type="submit">Rechercher</button>
+    </form>
+</section>-->
+
+    <!-- Introduction to Platform -->
+    <section class="section">
+        <h2 class="section-title" style="color: var(--secondary);">AfriConnect : Votre Partenaire de Confiance en Afrique</h2>
+        <div class="intro-text">
+            Bienvenue sur AfriConnect, votre passerelle privilégiée vers le paysage immobilier diversifié de l'Afrique. Que vous cherchiez une résidence moderne dans la dynamique <strong>Kigali</strong>, une parcelle agricole sereine au cœur du <strong>Burundi</strong>, une opportunité d'investissement luxuriante au <strong>Gabon</strong> riche en ressources naturelles, ou un espace commercial stimulant dans le très animé <strong>Sénégal</strong>, nous vous connectons à des opportunités sans précédent. Explorez un continent où la tradition rencontre le progrès et où vos rêves de propriété prennent racine. Au-delà de l'achat et de la vente, nous vous offrons des services essentiels d'entretien des terres et vous guidons à travers la riche tapisserie des merveilles touristiques de l'Afrique.
+        </div>
+        <div style="text-align:center;">
+            <a href="#services-section" class="cta-btn" onclick="document.getElementById('services-section').scrollIntoView({behavior:'smooth'})">Découvrir Nos Services</a>
+        </div>
+    </section>
+
+    <!-- Services Summary Section -->
+    <section class="section" id="services-section">
+        <h2 class="section-title" style="color: var(--secondary);">Des Solutions Complètes à Votre Portée</h2>
+        <div class="service-summary-grid">
+            <div class="service-summary-card">
+                <div class="service-summary-icon"><i class="fas fa-home"></i></div>
+                <h3>Immobilier (Achat & Location)</h3>
+                <p>Trouvez la maison de vos rêves, l'appartement idéal ou l'espace commercial parfait. Des milliers d'annonces vérifiées vous attendent.</p>
+                <a href="{% url 'real_estate:property_list' %}" class="cta-btn">Voir les Propriétés</a>
+            </div>
+            <div class="service-summary-card">
+                <div class="service-summary-icon"><i class="fas fa-tractor"></i></div>
+                <h3>Services Fonciers</h3>
+                <p>De l'analyse des sols à l'installation d'irrigation, en passant par le défrichage, nous valorisons et entretenons vos terres.</p>
+                <a href="{% url 'land_services:land_services' %}" class="cta-btn">Découvrir les Services</a>
+            </div>
+            <div class="service-summary-card">
+                <div class="service-summary-icon"><i class="fas fa-plane-departure"></i></div>
+                <h3>Tourisme & Découverte</h3>
+                <p>Explorez les trésors cachés de l'Afrique. Planifiez votre aventure sur mesure et découvrez des sites uniques.</p>
+                <a href="{% url 'tourism:tourism' %}" class="cta-btn">Explorer le Tourisme</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties Section -->
+    <section class="section">
+        <h2 class="section-title" style="color: var(--secondary);">Propriétés en Vedette & Bonnes Affaires</h2>
+        <div class="properties-grid">
+            {% for property in featured_properties %}
+            <div class="property-card">
+                {# Use a default placeholder if the main image doesn't exist to avoid broken images #}
+                <img src="{{ property.main_image.url|default:'https://placehold.co/400x250/eee/888?text=Image+Indisponible' }}" alt="{{ property.title }}" class="property-img">
+                <div class="property-content">
+                    {# Use get_..._display to show the human-readable choice label #}
+                    <span class="property-tag">{{ property.get_transaction_type_display }} - {{ property.get_property_type_display }}</span>
+                    <h3>{{ property.title }}</h3>
+                    <p>{{ property.description|truncatewords:20 }}</p>
+                    {# Format the price and remove unnecessary <br> tags #}
+                    <span class="property-price">{{ property.price|floatformat:"0" }} USD</span>
+                    <a href="{% url 'real_estate:property_detail' property.pk %}" class="cta-btn">Voir Détails</a>
+                </div>
+            </div>
+            {% empty %}
+                <p style="grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 2rem 0;">Aucune propriété en vedette pour le moment.</p>
+            {% endfor %}
+        </div>
+        <div style="text-align:center; margin-top:2.5rem;">
+            <a href="{% url 'real_estate:property_list' %}" class="cta-btn">Voir Toutes les Propriétés</a>
+        </div>
+    </section>
+
+    <!-- Explore by Country Section -->
+    <section class="section">
+        <h2 class="section-title" style="color: var(--secondary);">Votre Aventure Commence Ici : Explorez par Destination</h2>
+        <div class="countries-grid">
+            <!-- Rwanda -->
+            <div class="country-card">
+                <img src="https://placehold.co/400x250/1e7e34/ffffff?text=Rwanda" alt="Rwanda" class="country-img">
+                <div class="country-content">
+                    <h3>Rwanda</h3>
+                    <p>Le Pays aux Mille Collines, entre modernité et nature sauvage.</p>
+                    <a href="#" class="cta-btn">Explorer le Rwanda</a>
+                </div>
+            </div>
+            <!-- Burundi -->
+            <div class="country-card">
+                <img src="https://placehold.co/400x250/f9a825/ffffff?text=Burundi" alt="Burundi" class="country-img">
+                <div class="country-content">
+                    <h3>Burundi</h3>
+                    <p>Le Cœur de l'Afrique Authentique, entre lac et collines verdoyantes.</p>
+                    <a href="#" class="cta-btn">Explorer le Burundi</a>
+                </div>
+            </div>
+            <!-- Gabon -->
+            <div class="country-card">
+                <img src="https://placehold.co/400x250/0e3a5e/ffffff?text=Gabon" alt="Gabon" class="country-img">
+                <div class="country-content">
+                    <h3>Gabon</h3>
+                    <p>L'Émeraude d'Afrique Centrale, paradis de l'écotourisme.</p>
+                    <a href="#" class="cta-btn">Explorer le Gabon</a>
+                </div>
+            </div>
+            <!-- Sénégal -->
+            <div class="country-card">
+                <img src="https://placehold.co/400x250/6c7a89/ffffff?text=Senegal" alt="Sénégal" class="country-img">
+                <div class="country-content">
+                    <h3>Sénégal</h3>
+                    <p>La Teranga et ses Mille Couleurs, entre histoire et dynamisme.</p>
+                    <a href="#" class="cta-btn">Explorer le Sénégal</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Call to Action -->
+    <section class="call-to-action">
+        <h2>Prêt(e) à Concrétiser Votre Projet en Afrique ?</h2>
+        <p>Que vous cherchiez à acheter, vendre, louer, entretenir ou explorer, notre équipe est là pour vous guider à chaque étape.</p>
+        <a href="{% url 'contact:contact' %}" class="cta-btn">Contactez-Nous Dès Aujourd'hui</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div>
+            &copy; 2025 AfriPropConnect. Tous droits réservés. | <a href="{% url 'real_estate:home' %}">Accueil</a> | <a href="{% url 'contact:contact' %}">Contact</a> | <a href="#">Politique de Confidentialité</a>
+        </div>
+        <div style="margin-top:0.5rem;">
+            Suivez-nous :
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu');
+            const mobileNavLinks = document.getElementById('mobile-nav-links');
+
+            if (mobileMenuToggle && mobileNavLinks) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileNavLinks.classList.toggle('is-open');
+                });
+            }
+        });
+    </script>
+
+
+{% endblock %}

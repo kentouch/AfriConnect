@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %} {# Charge le moteur de templates de Django pour gérer les fichiers statiques #}
+    <meta charset="UTF-8">
+    <title>Tourisme | AfriPropConnect</title>
+    <link rel="stylesheet" href="{% static 'tourism/style/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Unified AfriPropConnect Styles -->
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="main-header">
+        <a href="{% url 'real_estate:home' %}" class="logo">AfriConnect</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{% url 'real_estate:home' %}">Accueil</a></li>
+                <li><a href="{% url 'real_estate:property_list' %}">Propriétés</a></li>
+                <li><a href="{% url 'land_services:land_services' %}">Services</a></li>
+                {# Le style inline ici met en évidence la page active #}
+                <li><a href="{% url 'tourism:tourism' %}" style="border-bottom: 2px solid var(--primary)">Tourisme</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Menu (Hidden by default, toggled by JS) -->
+    <nav class="mobile-nav" id="mobile-nav-links">
+        <a href="{% url 'real_estate:home' %}">Accueil</a>
+        <a href="{% url 'real_estate:property_list' %}">Propriétés</a>
+        <a href="{% url 'land_services:land_services' %}">Services</a>
+        <a href="{% url 'tourism:tourism' %}" style="border-bottom: 2px solid var(--primary)">Tourisme</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Explorez la Diversité de l'Afrique</h1>
+            <p>Découvrez des destinations uniques, des aventures inoubliables et des cultures riches à travers le continent.</p>
+            <button class="cta-btn" data-scroll-to="destinations-section">Découvrez nos Destinations</button> {# data-scroll-to pour JS #}
+        </div>
+    </section>
+
+    <!-- Introduction to Tourism Services -->
+    <section class="section">
+        <h2 class="section-title" style="color: var(--secondary);">Votre Aventure Africaine Commence Ici</h2>
+        <div class="intro-text">
+            AfriPropConnect vous ouvre les portes d'expériences de voyage authentiques. Que vous soyez à la recherche de safaris palpitants, de plages idylliques, de randonnées en montagne ou d'immersions culturelles, nous avons l'aventure qu'il vous faut au Sénégal, au Burundi, au Rwanda et au Gabon.
+        </div>
+    </section>
+
+    <!-- Destinations Grid Section -->
+    <section class="section" id="destinations-section">
+        <h2 class="section-title" style="color: var(--secondary);">Nos Destinations et Activités Phares</h2>
+        <div class="destinations-grid">
+            <!-- Example Destination Card 1 (Rwanda - Gorilles) -->
+            <div class="destination-card">
+                <img src="https://placehold.co/400x250/1e7e34/ffffff?text=Gorilles%20Rwanda" alt="Gorilles au Rwanda" class="destination-img">
+                <div class="destination-content">
+                    <span class="destination-tag">Rwanda - Faune</span>
+                    <h3>Trekking Gorilles - Parc des Volcans</h3>
+                    <p>Une rencontre inoubliable avec les gorilles de montagne dans leur habitat naturel.</p>
+                    <a href="#" class="cta-btn">En savoir plus</a>
+                </div>
+            </div>
+            <!-- Example Destination Card 2 (Sénégal - Île de Gorée) -->
+            <div class="destination-card">
+                <img src="https://placehold.co/400x250/0e3a5e/ffffff?text=Gor%C3%A9e%20S%C3%A9n%C3%A9gal" alt="Île de Gorée, Sénégal" class="destination-img">
+                <div class="destination-content">
+                    <span class="destination-tag">Sénégal - Culture</span>
+                    <h3>Visite Historique - Île de Gorée</h3>
+                    <p>Plongez dans l'histoire de la traite négrière sur cette île classée au patrimoine mondial.</p>
+                    <br>
+                    <a href="#" class="cta-btn">En savoir plus</a>
+                </div>
+            </div>
+            <!-- Example Destination Card 3 (Burundi - Lac Tanganyika) -->
+            <div class="destination-card">
+                <img src="https://placehold.co/400x250/f9a825/ffffff?text=Lac%20Tanganyika%20Burundi" alt="Lac Tanganyika, Burundi" class="destination-img">
+                <div class="destination-content">
+                    <span class="destination-tag">Burundi - Nature</span>
+                    <h3>Croisière sur le Lac Tanganyika</h3>
+                    <p>Détendez-vous sur les rives du deuxième lac le plus profond du monde.</p>
+                    <br>
+                    <a href="#" class="cta-btn">En savoir plus</a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:2.5rem;">
+            <a href="#" class="cta-btn">Voir Toutes les Aventures</a>
+        </div>
+    </section>
+
+    <!-- Contact Form Section (for Tourism inquiries) -->
+   <section class="form-section" id="tourism-inquiry-form">
+        <h2 style="color: var(--secondary);">Organisez votre voyage sur mesure</h2>
+        <p>Vous avez des questions ou souhaitez planifier un voyage personnalisé ? Contactez nos experts en tourisme !</p>
+
+        <form method="post" class="contact-form" id="tourismContactForm" >
+            {% csrf_token %}
+
+            <div>
+                <label for="{{ form.name.id_for_label }}">{{ tour_form.name.label }}</label>
+                {{ tour_form.name }}
+            </div>
+
+            <div>
+                <label for="{{ form.email.id_for_label }}">{{ tour_form.email.label }}</label>
+                {{ tour_form.email }}
+            </div>
+
+            <div>
+                <label for="{{ form.phone.id_for_label }}">{{ tour_form.phone.label }}</label>
+                {{ tour_form.phone }}
+            </div>
+
+            <div>
+                <label for="{{ form.country_interest.id_for_label }}">{{ tour_form.country_interest.label }}</label>
+                {{ tour_form.country_interest }}
+            </div>
+
+            <div>
+                <label for="{{ form.travel_type.id_for_label }}">{{ tour_form.travel_type.label }}</label>
+                {{ tour_form.travel_type }}
+            </div>
+
+            <div>
+                <label for="{{ form.description.id_for_label }}">{{ tour_form.description.label }}</label>
+                {{ tour_form.description }}
+            </div>
+
+            <button type="submit">Envoyer ma demande de voyage</button>
+            <div class="message-box" id="tourismResponseMessage"></div>
+        </form>
+    </section>
+
+    <!-- Main Call to Action -->
+    <section class="call-to-action">
+        <h2>Prêt à explorer l'Afrique ?</h2>
+        <p>Laissez-nous vous guider vers votre prochaine grande aventure.</p>
+        <a href="#tourism-inquiry-form" class="cta-btn" data-scroll-to="tourism-inquiry-form">Commencez votre voyage</a> {# data-scroll-to pour JS #}
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq">
+        <h2 class="section-title" style="color: var(--secondary);"><b>Foire Aux Questions</b></h2>
+        <div class="faq-item">
+            <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq-answer-1" tabindex="0">Combien de temps faut-il pour obtenir une réponse ?</div>
+            <div class="faq-answer" id="faq-answer-1">Nous nous efforçons de répondre à toutes les demandes dans un délai de 24 à 48 heures ouvrables.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq-answer-2" tabindex="0">Puis-je prendre rendez-vous pour une consultation ?</div>
+            <div class="faq-answer" id="faq-answer-2">Oui, vous pouvez demander un rendez-vous via le formulaire ou en nous contactant directement par téléphone ou e-mail.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq-answer-3" tabindex="0">Quels sont vos horaires d'ouverture ?</div>
+            <div class="faq-answer" id="faq-answer-3">Nos bureaux sont ouverts du lundi au vendredi, de 9h00 à 17h00 (heure locale de Kigali).</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq-answer-4" tabindex="0">Proposez-vous des voyages sur mesure ?</div>
+            <div class="faq-answer" id="faq-answer-4">Absolument ! Nous sommes spécialisés dans la création d'itinéraires personnalisés pour répondre à vos intérêts et à votre budget. Utilisez le formulaire de demande de voyage ci-dessus.</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div>
+            &copy; 2025 AfriConnect. Tous droits réservés. | <a href="{% url 'real_estate:home' %}">Accueil</a> | <a href="{% url 'contact:contact' %}">Contact</a> | <a href="#">Politique de Confidentialité</a>
+        </div>
+        <div style="margin-top:0.5rem;">
+            Suivez-nous :
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu');
+            const mobileNavLinks = document.getElementById('mobile-nav-links');
+
+            if (mobileMenuToggle && mobileNavLinks) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileNavLinks.classList.toggle('is-open');
+                });
+            }
+
+            // JavaScript for smooth scrolling for all buttons with data-scroll-to attribute
+            document.querySelectorAll('.cta-btn[data-scroll-to]').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetId = this.getAttribute('data-scroll-to');
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+        // script for form submission for tourism inquiries
+            const tourismContactForm = document.getElementById('tourismContactForm');
+            const tourismResponseMessage = document.getElementById('tourismResponseMessage');
+
+            if (tourismContactForm && tourismResponseMessage) {
+                tourismContactForm.addEventListener('submit', async function(event) {
+                    event.preventDefault();
+
+                    tourismResponseMessage.style.display = 'none';
+                    tourismResponseMessage.classList.remove('error', 'show');
+
+                    // Show "sending" state
+                    tourismResponseMessage.textContent = 'Envoi de votre demande...';
+                    tourismResponseMessage.style.display = 'block';
+                    tourismResponseMessage.style.backgroundColor = '#fff3cd'; // yellow-ish for processing
+                    tourismResponseMessage.style.color = '#856404';
+                    tourismResponseMessage.classList.add('show');
+
+                    const formData = new FormData(tourismContactForm);
+                    const data = Object.fromEntries(formData.entries());
+
+                    const backendEndpoint = "{% url 'tourism:submit_tour_request' %}"; // <-- must match your Django URLConf
+
+                    try {
+                        const response = await fetch(backendEndpoint, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': getCookie('csrftoken'),
+                            },
+                            body: JSON.stringify(data),
+                        });
+
+                        if (response.ok) {
+                            const result = await response.json();
+                            // this success message needs to appear to the tourism page
+                            tourismResponseMessage.classList.add('success');
+                            tourismResponseMessage.classList.remove('error');  
+                            tourismResponseMessage.textContent = result.message || 'Votre demande de voyage a été envoyée avec succès !';
+                            tourismResponseMessage.style.backgroundColor = '#d4edda';
+                            tourismResponseMessage.style.color = '#155724';
+                            tourismContactForm.reset();
+                        } else {
+                            const errorResult = await response.json();
+                            tourismResponseMessage.textContent = errorResult.message || 'Une erreur est survenue lors de l\'envoi de votre demande.';
+                            tourismResponseMessage.classList.add('error');
+                            tourismResponseMessage.style.backgroundColor = '#f8d7da';
+                            tourismResponseMessage.style.color = '#721c24';
+                        }
+                    } catch (error) {
+                        console.error('Erreur inattendue:', error);
+                        tourismResponseMessage.textContent = 'Impossible de se connecter au serveur. Veuillez réessayer plus tard.';
+                        tourismResponseMessage.classList.add('error');
+                        tourismResponseMessage.style.backgroundColor = '#f8d7da';
+                        tourismResponseMessage.style.color = '#721c24';
+                    }
+                });
+            }
+
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            // JavaScript for FAQ interactivity
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+
+                question.addEventListener('click', () => {
+                    const isExpanded = question.getAttribute('aria-expanded') === 'true';
+                    question.setAttribute('aria-expanded', !isExpanded);
+                    answer.classList.toggle('show');
+                });
+
+                // Optional: Allow keyboard interaction (Enter/Space)
+                question.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault(); // Prevent scrolling on spacebar
+                        question.click(); // Simulate a click
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
